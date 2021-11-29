@@ -125,7 +125,7 @@ switch (op)
           printf("\nBienvenido %s\n",nick);
           printf("___________________________________\n\n");
           }else{
-          printf("______________________\n\n");
+          printf(ANSI_COLOR_RED"______________________\n\n");
           printf("Este usuario no existe\n");
           printf("______________________\n\n\n\n");
         }
