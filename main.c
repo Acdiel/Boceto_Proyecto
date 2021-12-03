@@ -4,7 +4,7 @@
 #include <string.h>
 #include "list.h"
 #include "laberinto.h"
-#include "hashmap.h"
+#include "Map.h"
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -56,16 +56,20 @@ const char *get_csv_field (char * tmp, int k) {
 
 int main(void) {
 
+   // MAPA CON CLAVE USUARIO //
+Map* usuario = createMap(is_equal_string);
+setSortFunction(usuario, lower_than_string);
+
   int vida;
   int daño;
   char objetos[30];
   char accion;
   char personaje[20];
   char linea[1024];  
-  char nick[20];
   char Personaje_Principal;
   char Caballero;
   char Ninja;
+  int contra;
 
   Jugador* nuevo;
   
@@ -73,8 +77,8 @@ int main(void) {
   listaJugador = createList();
 
   List *result = createList();
-  HashMap* Map;
-  Map = createMap(50);//crear mapa
+  
+
 
   int op=10;
 
@@ -83,10 +87,10 @@ int main(void) {
     printf("\n"); 
 		printf(ANSI_COLOR_RED "       👻 Laberinto del Terror 2 👻       " ANSI_COLOR_RESET "\n");
     printf("--------------------------------------------\n");
-    printf( "| 1. Registrarse                           |\n");
-    printf( "| 2. Iniciar Sesion                        |\n");
-		printf( "| 3. Elegir Personaje                      |\n");
-		printf( "| 4. Comenzar el Juego                     |\n");
+    printf(ANSI_COLOR_BLUE " 1. Registrarse                           \n");
+    printf( " 2. Iniciar Sesion                        \n");
+		printf( " 3. Elegir Personaje                      \n");
+		printf( " 4. Comenzar el Juego                    "ANSI_COLOR_RESET "\n");
     printf("--------------------------------------------\n");
     printf("| ⏬ Indica la opción ⏬                   |\n");
     printf("-------------------------------------------\n");
@@ -100,35 +104,13 @@ switch (op)
     {
       case 1:
 
-        printf(ANSI_COLOR_YELLOW"______________________\n\n");
-        printf("Preparando su registro\n");
-        printf("______________________\n\n");
-        printf("-Utilice un maximo de 20 caracteres contando espacios-\n\n");
-        printf("Ingrese su Nick de usuario: "ANSI_COLOR_CYAN);
-        //se ingresa el nuevo nick que sera la key del mapa y se crea una lista, la cual se guarda como contenido dentro del mapa de nicks
-        scanf("%s", nick);
-
-        List* list = createList();
-
-        insertMap(Map,nick,list);
+        agregarUsuario(usuario);
 
       break;
 
       case 2:
 
-      printf(ANSI_COLOR_YELLOW"Ingrese su Nick de usuario: "ANSI_COLOR_CYAN);
-        scanf("%s", nick);//se ingresa un nick a buscar
-
-        if(searchMap(Map, nick) != NULL){
-          printf(ANSI_COLOR_GREEN"___________________________________\n");
-          printf("\nHas iniciado sesion correctamente\n");
-          printf("\nBienvenido %s\n",nick);
-          printf("___________________________________\n\n");
-          }else{
-          printf(ANSI_COLOR_RED"______________________\n\n");
-          printf("Este usuario no existe\n");
-          printf("______________________\n\n\n\n");
-        }
+       registroUsuario(usuario);
 
           break;
 
