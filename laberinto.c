@@ -55,69 +55,118 @@ int lower_than_int(void * key1, void * key2) {
     return 0;
 }
 
-Jugador* crearJugador(int * vida, int * daño, char * objetos){
+Jugador* crearJugador(int * vida, int * daño){
   Jugador* nuevo = (Jugador*) malloc(sizeof(Jugador));
   nuevo->vida=1;
   nuevo->daño=1;
-  strcpy(nuevo->objetos,"0");
   return nuevo;
 }
 
-void agregarJugador(List * list, int * vida, int * daño, char * objetos){
-    Jugador* nuevo = crearJugador(vida,daño,objetos);
-    if(list->head==NULL)pushFront(list,nuevo);
-    else pushBack(list,nuevo);
+void agregarJugador(List * listaJugador, int * vida, int * daño){
+    Jugador* nuevo = crearJugador(vida,daño);
+    if(firstList(listaJugador)==NULL)pushFront(listaJugador,nuevo);
+    else pushBack(listaJugador,nuevo);
     printf("*Jugador creado con exito*");
     printf("\n");
     printf(ANSI_COLOR_RED"❤ Vida: %d"ANSI_COLOR_RESET, nuevo->vida);
     printf("\n");
     printf(ANSI_COLOR_BLUE"⚔ Daño: %d"ANSI_COLOR_RESET, nuevo->daño);
     printf("\n");
-    printf(ANSI_COLOR_YELLOW"💼 Objetos: %s"ANSI_COLOR_RESET, nuevo->objetos);
-    printf("\n");
 }
 
-Caballero* crearCaballero(int * vida, int * daño, char * objetos){
+Caballero* crearCaballero(int * vida, int * daño){
   Caballero* nuevo2 = (Caballero*) malloc(sizeof(Caballero));
   nuevo2->vida=5;
   nuevo2->daño=1;
-  strcpy(nuevo2->objetos,"0");
   return nuevo2;
 }
 
-void agregarCaballero(List * list, int * vida, int * daño, char * objetos){
-    Caballero* nuevo2 = crearCaballero(vida,daño,objetos);
-    if(list->head==NULL)pushFront(list,nuevo2);
-    else pushBack(list,nuevo2);
+void agregarCaballero(List * listaJugador, int * vida, int * daño){
+    Caballero* nuevo2 = crearCaballero(vida,daño);
+    if(firstList(listaJugador)==NULL)pushFront(listaJugador,nuevo2);
+    else pushBack(listaJugador,nuevo2);
     printf("*Jugador creado con exito*");
     printf("\n");
-    printf("❤ Vida: %d", nuevo2->vida);
+    printf(ANSI_COLOR_RED"❤ Vida: %d"ANSI_COLOR_RESET, nuevo2->vida);
     printf("\n");
-    printf("⚔ Daño: %d", nuevo2->daño);
-    printf("\n");
-    printf("💼 Objetos: %s", nuevo2->objetos);
+    printf(ANSI_COLOR_BLUE"⚔ Daño: %d"ANSI_COLOR_RESET, nuevo2->daño);
     printf("\n");
 }
 
-Ninja* crearNinja(int * vida, int * daño, char * objetos){
+Ninja* crearNinja(int * vida, int * daño){
   Ninja* nuevo3 = (Ninja*) malloc(sizeof(Ninja));
   nuevo3->vida=2;
   nuevo3->daño=3;
-  strcpy(nuevo3->objetos,"0");
   return nuevo3;
 }
 
-void agregarNinja(List * list, int * vida, int * daño, char * objetos){
-    Ninja* nuevo3 = crearNinja(vida,daño,objetos);
-    if(list->head==NULL)pushFront(list,nuevo3);
-    else pushBack(list,nuevo3);
+void agregarNinja(List * listaJugador, int * vida, int * daño){
+    Ninja* nuevo3 = crearNinja(vida,daño);
+    if(firstList(listaJugador)==NULL)pushFront(listaJugador,nuevo3);
+    else pushBack(listaJugador,nuevo3);
     printf("*Jugador creado con exito*");
     printf("\n");
-    printf("❤ Vida: %d", nuevo3->vida);
+    printf(ANSI_COLOR_RED"❤ Vida: %d"ANSI_COLOR_RESET, nuevo3->vida);
     printf("\n");
-    printf("⚔ Daño: %d", nuevo3->daño);
+    printf(ANSI_COLOR_BLUE"⚔ Daño: %d"ANSI_COLOR_RESET, nuevo3->daño);
     printf("\n");
-    printf("💼 Objetos: %s", nuevo3->objetos);
+
+}
+
+Monstruo* crearMonstruo(int * vida, int * daño){
+  Monstruo* pelea1 = (Monstruo*) malloc(sizeof(Monstruo));
+  pelea1->vida=1;
+  pelea1->daño=1;
+  return pelea1;
+}
+
+void agregarMonstruo(List * listaMonstruo, int * vida, int * daño){
+    Monstruo* pelea1 = crearMonstruo(vida,daño);
+    if(firstList(listaMonstruo)==NULL)pushFront(listaMonstruo,pelea1);
+    else pushBack(listaMonstruo,pelea1);
+    printf("*Monstruo creado con exito*");
+    printf("\n");
+    printf("❤ Vida: %d", pelea1->vida);
+    printf("\n");
+    printf("⚔ Daño: %d", pelea1->daño);
+    printf("\n");
+}
+
+Monstruo2* crearMonstruo2(int * vida, int * daño){
+  Monstruo2* pelea2 = (Monstruo2*) malloc(sizeof(Monstruo2));
+  pelea2->vida=3;
+  pelea2->daño=1;
+  return pelea2;
+}
+
+void agregarMonstruo2(List * listaMonstruo, int * vida, int * daño){
+    Monstruo2* pelea2 = crearMonstruo2(vida,daño);
+    if(firstList(listaMonstruo)==NULL)pushFront(listaMonstruo,pelea2);
+    else pushBack(listaMonstruo,pelea2);
+    printf("*Monstruo2 creado con exito*");
+    printf("\n");
+    printf("❤ Vida: %d", pelea2->vida);
+    printf("\n");
+    printf("⚔ Daño: %d", pelea2->daño);
+    printf("\n");
+}
+
+Monstruo3* crearMonstruo3(int * vida, int * daño){
+  Monstruo3* pelea3 = (Monstruo3*) malloc(sizeof(Monstruo3));
+  pelea3->vida=5;
+  pelea3->daño=1;
+  return pelea3;
+}
+
+void agregarMonstruo3(List * listaMonstruo, int * vida, int * daño){
+    Monstruo3* pelea3 = crearMonstruo3(vida,daño);
+    if(firstList(listaMonstruo)==NULL)pushFront(listaMonstruo,pelea3);
+    else pushBack(listaMonstruo,pelea3);
+    printf("*Monstruo3 creado con exito*");
+    printf("\n");
+    printf("❤ Vida: %d", pelea3->vida);
+    printf("\n");
+    printf("⚔ Daño: %d", pelea3->daño);
     printf("\n");
 }
 

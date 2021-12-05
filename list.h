@@ -1,19 +1,18 @@
 #ifndef List_h
 #define List_h
 
-typedef struct Node Node;
-
-struct Node {
-    const void * data;
-    Node * next;
-    Node * prev;
-};
-
 typedef struct{
-    Node * head;
-    Node * tail;
-    Node * current;
-}List;
+
+  char pieza[10];
+  char description[50];
+  int visita;
+  int pelea;
+  int indice;
+  int pasillo;
+}muro;
+
+typedef struct List List;
+typedef struct Node Node;
 
 List * createList(void);
 
@@ -38,5 +37,7 @@ void * popBack(List * list);
 void * popCurrent(List * list);
 
 void cleanList(List * list);
+
+void imprimir_muro(int lineas);
 
 #endif /* List_h */
