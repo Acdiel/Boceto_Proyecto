@@ -66,12 +66,14 @@ void agregarJugador(List * listaJugador, int * vida, int * daño){
     Jugador* nuevo = crearJugador(vida,daño);
     if(firstList(listaJugador)==NULL)pushFront(listaJugador,nuevo);
     else pushBack(listaJugador,nuevo);
-    printf("*Jugador creado con exito*");
+    printf("╔══════════╗" "\n");
+    printf("║  Nerd    ║\n");
+    printf("╠══════════╩══╗\n");
+    printf("║"ANSI_COLOR_RED" ❤ Vida: %d   "ANSI_COLOR_RESET"║", nuevo->vida);
     printf("\n");
-    printf(ANSI_COLOR_RED"❤ Vida: %d"ANSI_COLOR_RESET, nuevo->vida);
+    printf("║"ANSI_COLOR_BLUE" ⚔ Daño: %d  "ANSI_COLOR_RESET" ║", nuevo->daño);
     printf("\n");
-    printf(ANSI_COLOR_BLUE"⚔ Daño: %d"ANSI_COLOR_RESET, nuevo->daño);
-    printf("\n");
+    printf("╚═════════════╝" "\n");
 }
 
 Caballero* crearCaballero(int * vida, int * daño){
@@ -85,12 +87,14 @@ void agregarCaballero(List * listaJugador, int * vida, int * daño){
     Caballero* nuevo2 = crearCaballero(vida,daño);
     if(firstList(listaJugador)==NULL)pushFront(listaJugador,nuevo2);
     else pushBack(listaJugador,nuevo2);
-    printf("*Jugador creado con exito*");
+    printf("╔══════════════╗" "\n");
+    printf("║  Caballero   ║\n");
+    printf("╠══════════════╩══╗\n");
+    printf("║"ANSI_COLOR_RED" ❤ Vida: %d   "ANSI_COLOR_RESET"    ║", nuevo2->vida);
     printf("\n");
-    printf(ANSI_COLOR_RED"❤ Vida: %d"ANSI_COLOR_RESET, nuevo2->vida);
+    printf("║"ANSI_COLOR_BLUE" ⚔ Daño: %d  "ANSI_COLOR_RESET"     ║", nuevo2->daño);
     printf("\n");
-    printf(ANSI_COLOR_BLUE"⚔ Daño: %d"ANSI_COLOR_RESET, nuevo2->daño);
-    printf("\n");
+    printf("╚═════════════════╝" "\n");
 }
 
 Ninja* crearNinja(int * vida, int * daño){
@@ -104,12 +108,15 @@ void agregarNinja(List * listaJugador, int * vida, int * daño){
     Ninja* nuevo3 = crearNinja(vida,daño);
     if(firstList(listaJugador)==NULL)pushFront(listaJugador,nuevo3);
     else pushBack(listaJugador,nuevo3);
-    printf("*Jugador creado con exito*");
+    printf("╔══════════╗" "\n");
+    printf("║  Ninja   ║\n");
+    printf("╠══════════╩══╗\n");
+    printf("║"ANSI_COLOR_RED" ❤ Vida: %d   "ANSI_COLOR_RESET"║", nuevo3->vida);
     printf("\n");
-    printf(ANSI_COLOR_RED"❤ Vida: %d"ANSI_COLOR_RESET, nuevo3->vida);
+    printf("║"ANSI_COLOR_BLUE" ⚔ Daño: %d  "ANSI_COLOR_RESET" ║", nuevo3->daño);
     printf("\n");
-    printf(ANSI_COLOR_BLUE"⚔ Daño: %d"ANSI_COLOR_RESET, nuevo3->daño);
-    printf("\n");
+    printf("╚═════════════╝" "\n");
+    
 
 }
 
@@ -124,12 +131,7 @@ void agregarMonstruo(List * listaMonstruo, int * vida, int * daño){
     Monstruo* pelea1 = crearMonstruo(vida,daño);
     if(firstList(listaMonstruo)==NULL)pushFront(listaMonstruo,pelea1);
     else pushBack(listaMonstruo,pelea1);
-    printf("*Monstruo creado con exito*");
-    printf("\n");
-    printf("❤ Vida: %d", pelea1->vida);
-    printf("\n");
-    printf("⚔ Daño: %d", pelea1->daño);
-    printf("\n");
+    
 }
 
 Monstruo2* crearMonstruo2(int * vida, int * daño){
@@ -143,12 +145,7 @@ void agregarMonstruo2(List * listaMonstruo, int * vida, int * daño){
     Monstruo2* pelea2 = crearMonstruo2(vida,daño);
     if(firstList(listaMonstruo)==NULL)pushFront(listaMonstruo,pelea2);
     else pushBack(listaMonstruo,pelea2);
-    printf("*Monstruo2 creado con exito*");
-    printf("\n");
-    printf("❤ Vida: %d", pelea2->vida);
-    printf("\n");
-    printf("⚔ Daño: %d", pelea2->daño);
-    printf("\n");
+    
 }
 
 Monstruo3* crearMonstruo3(int * vida, int * daño){
@@ -162,12 +159,7 @@ void agregarMonstruo3(List * listaMonstruo, int * vida, int * daño){
     Monstruo3* pelea3 = crearMonstruo3(vida,daño);
     if(firstList(listaMonstruo)==NULL)pushFront(listaMonstruo,pelea3);
     else pushBack(listaMonstruo,pelea3);
-    printf("*Monstruo3 creado con exito*");
-    printf("\n");
-    printf("❤ Vida: %d", pelea3->vida);
-    printf("\n");
-    printf("⚔ Daño: %d", pelea3->daño);
-    printf("\n");
+    
 }
 
 Usuario* crearUsuario(char* nick) {
@@ -208,11 +200,12 @@ void registroUsuario(Map * usuario){
   while (b!=NULL){
 
     if (strcmp(busca_Nombre,b->nick)==0){
-
-      printf(ANSI_COLOR_GREEN"___________________________________\n");
-          printf("\nHas iniciado sesion correctamente\n");
-          printf("\nBienvenido %s\n",b->nick);
-          printf("___________________________________\n\n");
+                             
+printf(ANSI_COLOR_GREEN"══════════════════════════════════════\n");
+          printf(" Has iniciado sesion correctamente  \n");
+          printf("      Bienvenido 👉 %s               \n",b->nick);
+          printf("══════════════════════════════════════\n\n");
+                 
           }
           else{
           printf(ANSI_COLOR_RED"______________________\n\n");

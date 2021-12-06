@@ -89,6 +89,8 @@ setSortFunction(usuario, lower_than_string);
   int contra;
   int personaje_existe = 0;
   int inicio_sesion_juego = 0;
+  int vida_maestra=0;
+  int ataque_maestro=0;
 
   Jugador* nuevo;
   Jugador* nuevo2;
@@ -203,49 +205,69 @@ while(fgets(linea,1024,dibujo)!=NULL){
   printf("%s",linea);
 }
 printf("\n");
-printf("SE PUEDE APRECIAR COMO UN MUCHACHO CAMINA PERDIDO POR EL BOSQUE");
+printf("SE PUEDE APRECIAR COMO UNA PERSONA CAMINA POR EL BOSQUE EN BUSCA DE UN LABERINTO QUE DICEN TIENE UN GRAN TESORO");
 printf("\n");
-printf("EL MUCHACHO ENCUENTRA UNA ESCALERA EN MEDIO DEL CAMINO Y LA USA PARA BAJAR");
+printf("LA PERSONA DESPUES DE MUCHO VAGAR POR EL BOSQUE, ENCUENTRA FINALMENTE UNA ENTRADA MISTERIOSA, QUE PARECIERA SER EL EMBRUJADO LABERINTO");
 printf("\n");
 printf("\n");
-printf("\nAL BAJAR SE ENCUENTRA 2 CAMINOS PARA AVANZAR(A SU DERECHA Y EN FRENTE, Y UNA HABITACION A LA IZQUIERDA).");
-printf(ANSI_COLOR_RED" ⚠ AL PARECER ESTA EN UN LABERINTO ⚠"ANSI_COLOR_RESET "\n");
+printf("\nAL BAJAR SE ENCUENTRA CON UN ESTRECHO PASILLO LLENO DE POLVO Y OSCURIDAD. SE PUEDEN ESCUCHAR HORRIBLES RUIDOS AL INTERIOR DE LOS PASILLOS. ASI QUE ENCIENDE UNA ANTOCHA Y SE ADENTRA A LA AVENTURA Y PELIGROS QUE EL LABERINTO LE PREPARA.");
+printf("\n");
+printf("\n");
+printf(ANSI_COLOR_RED"⚠ SE ESCUCHA ALGO AL FINAL DEL PASILLO ⚠"ANSI_COLOR_RESET "\n");
 printf("\n");
 
 if (strcmp("Nerd",personaje)==0){
 agregarJugador(listaJugador,&vida,&daño);
+vida_maestra=1;
+ataque_maestro=1;
 }
 
 if (strcmp("NERD",personaje)==0){
 agregarJugador(listaJugador,&vida,&daño);
+vida_maestra=1;
+ataque_maestro=1;
 }
 
 if (strcmp("nerd",personaje)==0){
 agregarJugador(listaJugador,&vida,&daño);
+vida_maestra=1;
+ataque_maestro=1;
 }
 
 if (strcmp("Caballero",personaje)==0){
 agregarCaballero(listaJugador,&vida,&daño);
+vida_maestra=5;
+ataque_maestro=1;
 }
 
 if (strcmp("CABALLERO",personaje)==0){
 agregarCaballero(listaJugador,&vida,&daño);
+vida_maestra=5;
+ataque_maestro=1;
 }
 
 if (strcmp("caballero",personaje)==0){
 agregarCaballero(listaJugador,&vida,&daño);
+vida_maestra=5;
+ataque_maestro=1;
 }
 
 if (strcmp("Ninja",personaje)==0){
 agregarNinja(listaJugador,&vida,&daño);
+vida_maestra=2;
+ataque_maestro=3;
 }
 
 if (strcmp("NINJA",personaje)==0){
 agregarNinja(listaJugador,&vida,&daño);
+vida_maestra=2;
+ataque_maestro=3;
 }
 
 if (strcmp("ninja",personaje)==0){
 agregarNinja(listaJugador,&vida,&daño);
+vida_maestra=2;
+ataque_maestro=3;
 }
 
 printf("\n");
@@ -288,29 +310,302 @@ printf("\n");
 
     
 
-/////////////////////////////////////////////
+//------------------------- MONSTRUO 1 -----------------------
     if (avanzar==1){
       if (lugar_jugador->pasillo==1){
         lugar_jugador=nextList(muros);
 
-        if (lugar_jugador->pelea==1){
-          
+        if (lugar_jugador->pelea>=1 && lugar_jugador->pasillo==1){
+
+          FILE * libro = fopen("Pasillo_enemigo.txt","r");
+
+        while (fgets(linea , 1024 , libro )!= NULL){
+          printf("%s",linea);
 
         }
+        printf("\n");
+       printf("Un pequeño diablillo aparecio de las sombras del laberinto.\n");
+       printf("No parece tan fuerte pero no debes confiarte!");
+        printf("\n");
+        printf("\n");
 
+          Monstruo * pelea1 = firstList(listaMonstruo);
+          
+          int decision =0;
 
-      imprimir_pasillo(lugar_jugador,muros,avanzar,linea);
+         while (pelea1->vida >0){
+           
+           
+             printf("╔══════════╗" "\n");
+             printf("║ Combate  ║" "\n");
+             printf("╠══════════╩══════════════════════╗\n");
+             printf("║"ANSI_COLOR_RED"- Estás siendo atacado          "ANSI_COLOR_RESET " ║" "\n");
+             printf("║- ¿Qué haces?                    ║\n");
+             printf("╚═════════════════════════════════╝" "\n");
+            printf(ANSI_COLOR_YELLOW"╔═══════════════╦═════════════════╗\n");
+            printf("║" ANSI_COLOR_BLUE"(1)"ANSI_COLOR_RESET"Atacar     "ANSI_COLOR_YELLOW " ║"ANSI_COLOR_RESET""ANSI_COLOR_BLUE "(2)"ANSI_COLOR_RESET"Defender     "ANSI_COLOR_YELLOW" ║" "\n");
+            printf("╚═══════════════╩═════════════════╝"ANSI_COLOR_RESET "\n");
+
+  printf("👉 ");scanf("%d", &decision);
+  printf("\n");
+
+  if (decision==1){
+  pelea1->vida=pelea1->vida-ataque_maestro;
+  vida_maestra--;  
+
+   if(vida_maestra==0){
+   printf("Has derrotado al Monstruo 1, pero Has Muerto");
+   return 0;
+   }
+   }
+   
+  if (decision==2){
+    printf(ANSI_COLOR_GREEN"🛡️ Bloqueaste el Ataque 🛡️"ANSI_COLOR_RESET"\n");
+    printf("\n");
+    printf("╔═════════════════════════════════╗\n");
+    printf("║- Tu turno ¿que haces?           ║\n");
+    printf("╚═════════════════════════════════╝" "\n");
+    printf(ANSI_COLOR_YELLOW"╔═══════════════╦═════════════════╗\n");
+            printf("║" ANSI_COLOR_BLUE"(1)"ANSI_COLOR_RESET"Atacar     "ANSI_COLOR_YELLOW " ║"ANSI_COLOR_RESET""ANSI_COLOR_BLUE "(2)"ANSI_COLOR_RESET"Defender     "ANSI_COLOR_YELLOW" ║" "\n");
+            printf("╚═══════════════╩═════════════════╝"ANSI_COLOR_RESET "\n");
+    printf("👉 ");scanf("%d", &decision);
+    if (decision==1){
+     pelea1->vida=pelea1->vida-ataque_maestro;;
+   }
+
+  } 
+
+  }
+
+  if (pelea1->vida <=0){
+    printf("\n");
+    printf("\n");
+    printf(ANSI_COLOR_RED"     --------------------------\n");
+    printf("       👏 Enemigo derrotado 👏\n");
+    printf("     --------------------------\n"ANSI_COLOR_RESET);
+
+     lugar_jugador->pelea=0;
+     lugar_jugador = firstList(muros2);
+
+     printf("\n");
+     printf("- NO PUEDO VOLVER, ⚠ ¡ESTA CERRADA LA PUERTA! ⚠");
+     printf("\n");
+     printf("- NO ME QUEDA OTRA QUE SEGUIR.....");
+     printf("\n");
+     printf("\n");
+  }
+
+  
+}else{
+     imprimir_pasillo(lugar_jugador,muros,avanzar,linea);
+     }
       }
+
+  
+
+//------------------------- MONSTRUO 2 -----------------------
 
       if (lugar_jugador->pasillo==2){
-        lugar_jugador=nextList(muros2);
-      imprimir_pasillo(lugar_jugador,muros2,avanzar,linea);
+
+        if (lugar_jugador->indice==14  && lugar_jugador->pasillo==2){
+
+          FILE * libro = fopen("Pasillo_enemigo 2.txt","r");
+
+        while (fgets(linea , 1024 , libro )!= NULL){
+          printf("%s",linea);
+
+        }
+        printf("\n");
+        printf("Escuchas un horrible chirrido! \n");
+        printf("Es una enorme tarantula que desea usarte como comida para sus huevos.\n");
+        printf("\n");
+
+        Monstruo2 * pelea2 = nextList(listaMonstruo);
+
+  printf("\n");
+  printf("\n");
+  printf(ANSI_COLOR_MAGENTA"                 👾           \n");
+  printf("Oh has encontrado al Jefe Monstruo 2\n");
+  printf("                 👾           \n"ANSI_COLOR_RESET);
+  printf("\n");
+  printf("\n");
+
+  int decision2 = 0;
+
+  while (pelea2->vida >0){
+
+  
+             printf("╔══════════╗" "\n");
+             printf("║ Combate  ║" "\n");
+             printf("╠══════════╩══════════════════════╗\n");
+             printf("║"ANSI_COLOR_RED"- Estás siendo atacado          "ANSI_COLOR_RESET " ║" "\n");
+             printf("║- ¿Qué haces?                    ║\n");
+             printf("╚═════════════════════════════════╝" "\n");
+  printf(ANSI_COLOR_YELLOW"╔═══════════════╦═════════════════╗\n");
+            printf("║" ANSI_COLOR_BLUE"(1)"ANSI_COLOR_RESET"Atacar     "ANSI_COLOR_YELLOW " ║"ANSI_COLOR_RESET""ANSI_COLOR_BLUE "(2)"ANSI_COLOR_RESET"Defender     "ANSI_COLOR_YELLOW" ║" "\n");
+            printf("╚═══════════════╩═════════════════╝"ANSI_COLOR_RESET "\n");
+
+  printf("👉 ");scanf("%d", &decision2);
+  printf("\n");
+
+  if (decision2==1){
+   pelea2->vida=pelea2->vida-ataque_maestro;
+   vida_maestra--;
+
+   if(vida_maestra==0){
+   printf("Has Muerto");
+   return 0;
+   }
+
+   }
+   
+  if (decision2==2){
+
+    printf(ANSI_COLOR_GREEN"🛡️ Bloqueaste el Ataque 🛡️"ANSI_COLOR_RESET"\n");
+    printf("\n");
+    printf("╔═════════════════════════════════╗\n");
+    printf("║- Tu turno ¿que haces?           ║\n");
+    printf("╚═════════════════════════════════╝" "\n");
+    printf(ANSI_COLOR_YELLOW"╔═══════════════╦═════════════════╗\n");
+            printf("║" ANSI_COLOR_BLUE"(1)"ANSI_COLOR_RESET"Atacar     "ANSI_COLOR_YELLOW " ║"ANSI_COLOR_RESET""ANSI_COLOR_BLUE "(2)"ANSI_COLOR_RESET"Defender     "ANSI_COLOR_YELLOW" ║" "\n");
+            printf("╚═══════════════╩═════════════════╝"ANSI_COLOR_RESET "\n");
+    printf("👉 ");scanf("%d", &decision2);
+    if (decision2==1){
+     pelea2->vida=pelea2->vida-ataque_maestro;
+   }
+
+  } 
+
+  }
+
+  if (pelea2->vida <=0){
+    printf("\n");
+    printf("\n");
+    printf(ANSI_COLOR_RED"     --------------------------\n");
+    printf("       👏 Enemigo derrotado 👏\n");
+    printf("     --------------------------\n"ANSI_COLOR_RESET);
+
+    lugar_jugador = firstList(muros3);
+
+     printf("\n");
+     printf("- LAS TELARAÑAS QUE DEJO LA TARANTULA, TAMPOCO ME PERMITEN REGRESAR ");
+     printf("\n");
+     printf("- NO ME QUEDA OTRA QUE SEGUIR.....");
+     printf("-🙏🙏 QUE SEA LO QUE DIOS QUIERA 🙏🙏");
+     printf("\n");
+     printf("\n");
+
+  }
+      
+      }else{
+          lugar_jugador=nextList(muros2);
+          imprimir_pasillo(lugar_jugador,muros2,avanzar,linea);
+  
+}
+
+        
       }
 
+//------------------------- MONSTRUO 3 -----------------------     
+
       if (lugar_jugador->pasillo==3){
-        lugar_jugador=nextList(muros3);
-      imprimir_pasillo(lugar_jugador,muros3,avanzar,linea);
-      }
+
+        if (lugar_jugador->indice==14  && lugar_jugador->pasillo==3){
+
+          FILE * libro = fopen("Pasillo_enemigo 3.txt","r");
+
+        while (fgets(linea , 1024 , libro )!= NULL){
+          printf("%s",linea);
+
+        }
+        printf("\n");
+        printf("Un Demonio! Esta furioso porque un intruso ha entrado en sus dominios y sabe que es por su tesoro!");
+        printf(" Matalo y todas sus riquezas seran tuyas!\n");
+        printf("\n");
+
+        Monstruo3 * pelea3 = nextList(listaMonstruo);
+
+  printf("\n");
+  printf("\n");
+  printf(ANSI_COLOR_MAGENTA"                 👾           \n");
+  printf("Oh has encontrado al Jefe Monstruo 3\n");
+  printf("                 👾           \n"ANSI_COLOR_RESET);
+  printf("\n");
+  printf("\n");
+
+  int decision3 = 0;
+
+  while (pelea3->vida >0){
+
+  
+             printf("╔══════════╗" "\n");
+             printf("║ Combate  ║" "\n");
+             printf("╠══════════╩══════════════════════╗\n");
+             printf("║"ANSI_COLOR_RED"- Estás siendo atacado          "ANSI_COLOR_RESET " ║" "\n");
+             printf("║- ¿Qué haces?                    ║\n");
+             printf("╚═════════════════════════════════╝" "\n");
+  printf(ANSI_COLOR_YELLOW"╔═══════════════╦═════════════════╗\n");
+            printf("║" ANSI_COLOR_BLUE"(1)"ANSI_COLOR_RESET"Atacar     "ANSI_COLOR_YELLOW " ║"ANSI_COLOR_RESET""ANSI_COLOR_BLUE "(2)"ANSI_COLOR_RESET"Defender     "ANSI_COLOR_YELLOW" ║" "\n");
+            printf("╚═══════════════╩═════════════════╝"ANSI_COLOR_RESET "\n");
+
+  printf("👉 ");scanf("%d", &decision3);
+  printf("\n");
+
+  if (decision3==1){
+   pelea3->vida=pelea3->vida-ataque_maestro;
+   vida_maestra--;
+
+   if(vida_maestra==0){
+   printf("Has Muerto");
+   return 0;
+   }
+
+   }
+   
+  if (decision3==2){
+
+    printf(ANSI_COLOR_GREEN"🛡️ Bloqueaste el Ataque 🛡️"ANSI_COLOR_RESET"\n");
+    printf("\n");
+    printf("╔═════════════════════════════════╗\n");
+    printf("║- Tu turno ¿que haces?           ║\n");
+    printf("╚═════════════════════════════════╝" "\n");
+    printf(ANSI_COLOR_YELLOW"╔═══════════════╦═════════════════╗\n");
+            printf("║" ANSI_COLOR_BLUE"(1)"ANSI_COLOR_RESET"Atacar     "ANSI_COLOR_YELLOW " ║"ANSI_COLOR_RESET""ANSI_COLOR_BLUE "(2)"ANSI_COLOR_RESET"Defender     "ANSI_COLOR_YELLOW" ║" "\n");
+            printf("╚═══════════════╩═════════════════╝"ANSI_COLOR_RESET "\n");
+    printf("👉 ");scanf("%d", &decision3);
+    if (decision3==1){
+     pelea3->vida=pelea3->vida-ataque_maestro;
+   }
+
+  } 
+
+  }
+
+  if (pelea3->vida <=0){
+    printf("\n");
+    printf("\n");
+    printf(ANSI_COLOR_RED"     --------------------------\n");
+    printf("       👏 Enemigo derrotado 👏\n");
+    printf("     --------------------------\n"ANSI_COLOR_RESET);
+
+   FILE * libro = fopen("Victoria.txt","r");
+
+        while (fgets(linea , 1024 , libro )!= NULL){
+          printf("%s",linea);
+
+        }
+      return 0; 
+
+  }
+     
+        }
+
+         lugar_jugador=nextList(muros3);
+         imprimir_pasillo(lugar_jugador,muros3,avanzar,linea);
+
+}     
+
+        
 
     }
 ////////////////////////////////////////
@@ -372,7 +667,7 @@ printf("\n");
 
   if (lugar_jugador->indice==16 && lugar_jugador->pasillo==1){
 
-    lugar_jugador = firstList(muros2);
+   
 
   }
 
@@ -384,176 +679,7 @@ printf("\n");
 
 }
 
-
-Monstruo * pelea1 = firstList(listaMonstruo);
-
-int decision =0;
-
-while (pelea1->vida >0){
-
-  printf("╔══════════╗" "\n");
-  printf("║ Combate  ║" "\n");
-  printf("╠══════════╩══════════════════════╗\n");
-  printf("║"ANSI_COLOR_RED"- Estás siendo atacado          "ANSI_COLOR_RESET " ║" "\n");
-  printf("║- ¿Qué haces?                    ║\n");
-  printf("╚═════════════════════════════════╝" "\n");
-  printf(ANSI_COLOR_YELLOW"╔═══════════════╦═════════════════╗\n");
-  printf("║" ANSI_COLOR_BLUE"(1)"ANSI_COLOR_RESET"Atacar     "ANSI_COLOR_YELLOW " ║"ANSI_COLOR_RESET""ANSI_COLOR_BLUE "(2)"ANSI_COLOR_RESET"Defender     "ANSI_COLOR_YELLOW" ║" "\n");
-  printf("╚═══════════════╩═════════════════╝"ANSI_COLOR_RESET "\n");
-
-  printf("👉 ");scanf("%d", &decision);
-  printf("\n");
-
-  if (decision==1){
-   nuevo3->vida--;
-   }
-   
-  if (decision==2){
-
-    printf(ANSI_COLOR_GREEN"🛡️ Bloqueaste el Ataque 🛡️"ANSI_COLOR_RESET"\n");
-    printf("\n");
-    printf("┌─────────────────────────────────┐\n");
-    printf("│- Tu turno ¿que haces?           │\n");
-    printf("└─────────────────────────────────┘" "\n");
-    printf(ANSI_COLOR_YELLOW"┌───────────────┬─────────────────┐\n");
-  printf("│ (1)Atacar     │ (2)Defender     │" "\n");
-  printf("└───────────────┴─────────────────┘"ANSI_COLOR_RESET "\n");
-    printf("👉 ");scanf("%d", &decision);
-    if (decision==1){
-     pelea1->vida--;
-   }
-
-  } 
-
-  }
-
-  if (pelea1->vida ==0){
-    printf("\n");
-    printf("\n");
-    printf(ANSI_COLOR_CYAN"     --------------------------\n");
-    printf("       👏 Enemigo derrotado 👏\n");
-    printf("     --------------------------\n"ANSI_COLOR_RESET);
-
-  }
-
-
-  Monstruo2 * pelea2 = nextList(listaMonstruo);
-
-  printf("\n");
-  printf("\n");
-  printf(ANSI_COLOR_MAGENTA"                 👾           \n");
-  printf("Oh has encontrado al Jefe Monstruo 2\n");
-  printf("                 👾           \n"ANSI_COLOR_RESET);
-  printf("\n");
-  printf("\n");
-
-  int decision2 = 0;
-
-  while (pelea2->vida >0){
-
-  
-  printf("┌─────────────────────────────────┐\n");
-  printf("│"ANSI_COLOR_RED"- Estás siendo atacado          "ANSI_COLOR_RESET " │" "\n");
-  printf("│- ¿Qué haces?                    │\n");
-  printf("└─────────────────────────────────┘" "\n");
-  printf(ANSI_COLOR_YELLOW"┌───────────────┬─────────────────┐\n");
-  printf("│ (1)Atacar     │ (2)Defender     │" "\n");
-  printf("└───────────────┴─────────────────┘"ANSI_COLOR_RESET "\n");
-
-  printf("👉 ");scanf("%d", &decision2);
-  printf("\n");
-
-  if (decision2==1){
-   nuevo3->vida--;
-   }
-   
-  if (decision2==2){
-
-    printf(ANSI_COLOR_GREEN"🛡️ Bloqueaste el Ataque 🛡️"ANSI_COLOR_RESET"\n");
-    printf("\n");
-    printf("- Tu turno ¿que haces?\n");
-     printf(ANSI_COLOR_YELLOW"┌───────────────┬─────────────────┐\n");
-  printf("│ (1)Atacar     │ (2)Defender     │" "\n");
-  printf("└───────────────┴─────────────────┘"ANSI_COLOR_RESET "\n");
-    printf("👉 ");scanf("%d", &decision2);
-    if (decision2==1){
-     pelea2->vida--;
-   }
-
-  } 
-
-  }
-
-  if (pelea2->vida ==0){
-    printf("\n");
-    printf("\n");
-    printf(ANSI_COLOR_CYAN"     --------------------------\n");
-    printf("       👏 Enemigo derrotado 👏\n");
-    printf("     --------------------------\n"ANSI_COLOR_RESET);
-
-  }
-
-  Monstruo3 * pelea3 = nextList(listaMonstruo);
-
-  printf("\n");
-  printf("\n");
-  printf(ANSI_COLOR_MAGENTA"                 👾           \n");
-  printf("Oh has encontrado al Jefe Monstruo 3\n");
-  printf("                 👾           \n"ANSI_COLOR_RESET);
-  printf("\n");
-  printf("\n");
-
-  int decision3 = 0;
-
-  while (pelea3->vida >0){
-
-  printf("┌─────────────────────────────────┐\n");
-  printf("│"ANSI_COLOR_RED"- Estás siendo atacado          "ANSI_COLOR_RESET " │" "\n");
-  printf("│- ¿Qué haces?                    │\n");
-  printf("└─────────────────────────────────┘" "\n");
-  printf(ANSI_COLOR_YELLOW"┌───────────────┬─────────────────┐\n");
-  printf("│ (1)Atacar     │ (2)Defender     │" "\n");
-  printf("└───────────────┴─────────────────┘"ANSI_COLOR_RESET "\n");
-
-  printf("👉 ");scanf("%d", &decision3);
-  printf("\n");
-
-  if (decision3==1){
-   nuevo3->vida--;
-   }
-   
-  if (decision3==2){
-    printf(ANSI_COLOR_GREEN"🛡️ Bloqueaste el Ataque 🛡️"ANSI_COLOR_RESET"\n");
-    printf("\n");
-    printf("- Tu turno ¿que haces?\n");
-    printf(ANSI_COLOR_YELLOW"┌───────────────┬─────────────────┐\n");
-    printf("│ (1)Atacar     │ (2)Defender     │" "\n");
-    printf("└───────────────┴─────────────────┘"ANSI_COLOR_RESET "\n");
-    printf("👉 ");scanf("%d", &decision3);
-    if (decision2==1){
-     pelea3->vida--;
-   }
-
-  } 
-
-  }
-
-  if (pelea3->vida ==0){
-    printf("\n");
-    printf("\n");
-    printf(ANSI_COLOR_CYAN"     --------------------------\n");
-    printf("       👏 Enemigo derrotado 👏\n");
-    printf("     --------------------------\n"ANSI_COLOR_RESET);
-
-  }
-
-
-
     }
-
-
-
-
     }
     
   return 0;
@@ -832,8 +958,8 @@ void genera_pasillo3(List *muros3, muro *partes3 ){
 void imprimir_pasillo(muro * lugar_jugador, List *muros, int avanzar,char *linea){
 
   
-      if (strstr(lugar_jugador->pieza,"╝") && lugar_jugador->pelea==0 ){
-        FILE * libro = fopen("pasillo.txt","r");
+      if (strstr(lugar_jugador->pieza,"╝") && lugar_jugador->indice!=15){
+            FILE * libro = fopen("pasillo.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
@@ -845,8 +971,7 @@ void imprimir_pasillo(muro * lugar_jugador, List *muros, int avanzar,char *linea
       }
      
 
-      if (strstr(lugar_jugador->pieza,"║") && lugar_jugador->pelea==0){
-       FILE * libro = fopen("pasillo.txt","r");
+      if (strstr(lugar_jugador->pieza,"║") && lugar_jugador->indice!=15){  FILE * libro = fopen("pasillo.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
@@ -860,8 +985,7 @@ void imprimir_pasillo(muro * lugar_jugador, List *muros, int avanzar,char *linea
         printf("\n");
     }
 
-    if (strstr(lugar_jugador->pieza,"═") && lugar_jugador->pelea==0){
-       FILE * libro = fopen("pasillo.txt","r");
+    if (strstr(lugar_jugador->pieza,"═") && lugar_jugador->indice!=15){  FILE * libro = fopen("pasillo.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
@@ -878,8 +1002,7 @@ void imprimir_pasillo(muro * lugar_jugador, List *muros, int avanzar,char *linea
     }
 
     
-      if (strstr(lugar_jugador->pieza,"╚") && lugar_jugador->pelea==0){
-       FILE * libro = fopen("pasillo_puerta2.txt","r");
+      if (strstr(lugar_jugador->pieza,"╚") && lugar_jugador->indice!=15){  FILE * libro = fopen("pasillo_puerta2.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
@@ -894,8 +1017,8 @@ void imprimir_pasillo(muro * lugar_jugador, List *muros, int avanzar,char *linea
         printf("\n");
     }
 
-    if (strstr(lugar_jugador->pieza,"╗") && lugar_jugador->pelea==0){
-       FILE * libro = fopen("pasillo_puerta.txt","r");
+    if (strstr(lugar_jugador->pieza,"╗") && lugar_jugador->indice!=15){
+        FILE * libro = fopen("pasillo_puerta.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
@@ -915,12 +1038,7 @@ void imprimir_pasillo(muro * lugar_jugador, List *muros, int avanzar,char *linea
      printf("\n");
 
 
-     if (lugar_jugador->indice==15){
-       
-     }
-
-    
-    lugar_jugador->visita=1;
+     lugar_jugador->visita=1;
 
     
 
@@ -929,8 +1047,7 @@ void imprimir_pasillo(muro * lugar_jugador, List *muros, int avanzar,char *linea
 void imprimir_pasillo_atras(muro * lugar_jugador, List *muros, int avanzar,char *linea){
 
 
-  if (strstr(lugar_jugador -> pieza,"║")){
-       FILE * libro = fopen("pasillo.txt","r");
+  if (strstr(lugar_jugador->pieza,"║") && lugar_jugador->indice!=15){  FILE * libro = fopen("pasillo.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
@@ -940,8 +1057,7 @@ void imprimir_pasillo_atras(muro * lugar_jugador, List *muros, int avanzar,char 
     
     }
 
-     if (strstr(lugar_jugador->pieza,"╚")){
-       FILE * libro = fopen("pasillo_puerta2.txt","r");
+     if (strstr(lugar_jugador->pieza,"╚") && lugar_jugador->indice!=15){ FILE * libro = fopen("pasillo_puerta2.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
@@ -950,8 +1066,7 @@ void imprimir_pasillo_atras(muro * lugar_jugador, List *muros, int avanzar,char 
         printf("\n");
     }
 
-    if (strstr(lugar_jugador->pieza,"═")){
-       FILE * libro = fopen("pasillo.txt","r");
+    if (strstr(lugar_jugador->pieza,"═") && lugar_jugador->indice!=15){      FILE * libro = fopen("pasillo.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
@@ -961,8 +1076,8 @@ void imprimir_pasillo_atras(muro * lugar_jugador, List *muros, int avanzar,char 
         printf("\n");
     }
 
-    if (strstr(lugar_jugador->pieza,"╗")){
-       FILE * libro = fopen("pasillo_puerta.txt","r");
+    if (strstr(lugar_jugador->pieza,"╗") && lugar_jugador->indice!=15){
+        FILE * libro = fopen("pasillo_puerta.txt","r");
 
         while (fgets(linea , 1024 , libro )!= NULL){
           printf("%s",linea);
